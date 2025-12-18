@@ -13,7 +13,7 @@ export class TwoService {
 
   processFile(file: Express.Multer.File): Promise<number> {
     return new Promise<number>((resolve, reject) => {
-      const worker = new Worker(path.join(__dirname, 'two.worker.js')); // compiled JS
+      const worker = new Worker(path.join(__dirname, 'two.worker.js'));
 
       worker.once('message', resolve);
       worker.once('error', reject);
@@ -21,7 +21,7 @@ export class TwoService {
         if (code !== 0) reject(new Error(`Worker exited with code ${code}`));
       });
 
-      worker.postMessage(file.buffer); // send only Buffer
+      worker.postMessage(file.buffer);
     });
   }
 }
