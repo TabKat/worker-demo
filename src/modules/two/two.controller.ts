@@ -9,6 +9,7 @@ import {
 } from '@nestjs/common';
 import { FilesInterceptor } from '@nestjs/platform-express';
 import { TwoService } from './two.service';
+import { ApiBody, ApiConsumes } from '@nestjs/swagger';
 
 @Controller('two')
 export class TwoController {
@@ -17,6 +18,21 @@ export class TwoController {
   constructor(private readonly service: TwoService) {}
 
   @Post('upload')
+  @ApiConsumes('multipart/form-data')
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: {
+        files: {
+          type: 'array',
+          items: {
+            type: 'string',
+            format: 'binary',
+          },
+        },
+      },
+    },
+  })
   @UseInterceptors(FilesInterceptor('files', 5))
   async uploadFiles(@UploadedFiles() files: Express.Multer.File[]) {
     const start = Date.now();
