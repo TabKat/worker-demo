@@ -38,6 +38,7 @@ export class OneController {
     const start = Date.now();
     try {
       const result = this.service.processMultipleFiles(files);
+
       const end = Date.now();
       this.logger.log(`Processing time: ${end - start} ms`);
 

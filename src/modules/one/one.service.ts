@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { doCalc } from '../shared/utils/dummy';
+import { doCalc } from '../../shared/utils/dummy';
 
 @Injectable()
-export class TwoService {
+export class OneService {
   processMultipleFiles(files: Express.Multer.File[]) {
     let count = 0;
     for (const file of files) {

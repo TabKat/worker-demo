@@ -4,6 +4,6 @@ import { TwoService } from './two.service';
 
 @Module({
   controllers: [TwoController],
-  providers: [TwoService]
+  providers: [TwoService],
 })
 export class TwoModule {}
